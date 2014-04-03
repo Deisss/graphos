@@ -193,7 +193,22 @@ class PygalOptions(object):
                 else:
                     value = 'cubic'
             elif name == 'range':
-                value = self.__convTuple(value)
+                value = self.__convList(value)
+                # converting first value
+                if value[0].isdigit():
+                    value[0] = self.__convInt(value[0])
+                else:
+                    value[0] = self.__convFloat(value[0])
+
+                # converting second value
+                if value[1].isdigit():
+                    value[1] = self.__convInt(value[1])
+                else:
+                    value[1] = self.__convFloat(value[1])
+
+                # final convertion into tuple
+                value = tuple(value)
+
             elif name in ['x_labels', 'y_labels']:
                 # can be both tuple or string
                 # Tuple
