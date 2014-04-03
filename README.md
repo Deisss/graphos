@@ -43,4 +43,16 @@ You can easily configure application entry point threw ```config.ini``` file. It
 
 
 # Usage
-Run python, and that's it: ```python server.py```
+Run python, and that's it: ```python server.py```, by default the system will start on port ```8591```.
+
+You need to follow the [PyGal documentation](http://pygal.org/documentation/) to understand how to build URLs:
+  * The chart type is always mandatory: ```&chart=Radar```
+  * every options start with a 'o' before, like if you want to setup the ```fill``` property, we do: ```&ofill=true```
+  * There is one exception: the ```style``` property is used directly: ```&style=DarkSolarizedStyle```
+  * By default, the system will output in SVG mode, to change it to png, add the ```&output=png```
+  * Finally, the series are passed like this: ```&s1=MySeries:1,2,3,4,5```, the name ```s1``` has to be unique, and start with a *s*. Anything starting with a *s* except *style*, will be consider as a serie. Then you specify the serie name (here: MySeries), and then every value separated by ','
+
+Few examples to try:
+  * Line chart with range 0 to 100: [Try it!](http://localhost:8591/?chart=Line&s1=MaSuite:1,2,3,4,5&s2=SecondSuite:2,10,4,5,12&owidth=600&oheight=400&oexplicit_size=true&ofill=true&style=DarkSolarizedStyle&orange=0,100)
+  * Radar chart with style setted: [Try it!](http://localhost:8591/?chart=Radar&s1=MaSuite:1,2,3,4,5&s2=SecondSuite:2,10,4,5,12&owidth=600&oheight=400&oexplicit_size=true&ofill=true&style=DarkSolarizedStyle)
+  * PNG output: [Try it!](http://localhost:8591/?chart=Radar&s1=MaSuite:1,2,3,4,5&s2=SecondSuite:2,10,4,5,12&ofill=true&output=png)
